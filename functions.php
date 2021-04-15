@@ -31,6 +31,16 @@ function enqueue_child_styles() {
 
 		// Enqueue Scripts
 
+		// Inline Styles
+		$primary_color = esc_attr( get_theme_mod( 'xten_theme_color' ) );
+		if ( $primary_color ) :
+			$styles       = '#load-splash{background-image:linear-gradient(-45deg,rgb(89,61,181),rgb(0,0,0))}';
+			$styles       = xten_minify_css( $styles );
+			wp_register_style( 'xten-child-inline-style', false );
+			wp_enqueue_style( 'xten-child-inline-style' );
+			wp_add_inline_style( 'xten-child-inline-style', $styles );
+		endif; // endif ( $primary_color ) :
+
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_child_styles' );
 	
@@ -52,3 +62,30 @@ add_action( 'wp_enqueue_scripts', 'enqueue_child_styles' );
 //     return $paths;
 
 // }
+
+function tag_manager_head() {
+	if ( strpos( $_SERVER['SERVER_NAME'], 'localhost' ) === false ) :
+		?>
+		<!-- Google Tag Manager -->
+		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-P96N7K9');</script>
+		<!-- End Google Tag Manager -->
+		<?php
+	endif;
+}
+add_action('wp_head','tag_manager_head', 20);
+
+function tag_manager_body(){
+	if ( strpos( $_SERVER['SERVER_NAME'], 'localhost' ) === false ) :
+		?>
+		<!-- Google Tag Manager (noscript) -->
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P96N7K9"
+		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		<!-- End Google Tag Manager (noscript) -->
+		<?php
+	endif;
+}
+add_action('__before_header','tag_manager_body', 20);
