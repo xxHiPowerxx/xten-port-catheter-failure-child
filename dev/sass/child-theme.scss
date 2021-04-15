@@ -1,0 +1,151 @@
+@import 'variables';
+
+// Common
+// Colors
+:root {
+	--xten-color-primary: $primary;
+	--xten-color-secondary: $secondary;
+}
+.xten-color-primary,
+.xten-color-primary-before:before,
+.xten-color-primary-after:after,
+.xten-color-primary-active:hover,
+.xten-color-primary-active:focus,
+.xten-color-primary-active:focus-within {
+	color: $primary;
+}
+// /Colors
+
+// Typogrophy
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 700;
+}
+h1 {
+	text-transform: uppercase;
+}
+.sub-super {
+	.sub {
+		font-size: 0.5em;
+		color: $white;
+		font-weight: 400;
+		line-height: 2;
+	}
+	> * {
+		display: block;
+	}
+}
+// /Typogrophy
+
+// Layout
+.section {
+	padding-top: 12rem;
+	padding-bottom: 12rem;
+}
+.alt-bg {
+	background: linear-gradient(-45deg, $secondary-lightest, $white);
+	&:nth-child(2n) {
+		background-image: linear-gradient(-45deg, $primary, $black);
+		color: $white;
+		.xten-color-primary {
+			color: $primary-light;
+		}
+		a {
+			&,
+			#{$active} {
+				color: $secondary-light;
+			}
+		}
+	}
+}
+// /Layout
+a {
+	#{$active} {
+		color: $secondary;
+	}
+}
+// /Common
+
+// Header
+div.header-wrapper {
+	.site-header {
+		.navbar {
+			.header-container {
+				.site-branding {
+					.custom-logo-link {
+						&.logo-type-site-name {
+							color: $primary;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+// /Header
+
+// Footer
+.site-footer {
+	background: $white;
+	.custom-logo-link {
+		&,
+		#{$active} {
+			color: $primary;
+		}
+	}
+	.site-info {
+		color: $primary;
+	}
+}
+.site-info {
+	a {
+		&,
+		#{$active} {
+			color: $primary;
+		}
+	}
+}
+// /Footer
+
+// Home
+// Hero
+.xten-component-hero {
+	&#hero {
+		background-position-x: calc(50% - 82rem);
+		@media (min-width: $vp_sm) {
+			background-position-x: calc(50% - 20rem);
+		}
+	}
+	.xten-content {
+		width: 100%;
+		@media (min-width: $vp_sm) {
+			width: 75%;
+		}
+		@media (min-width: $vp_m) {
+			width: 58%;
+		}
+	}
+	.sub-super {
+		text-align: right;
+		@media (max-width: $vp_sm - 1) {
+			font-size: 4.8rem;
+			text-align: center;
+			line-height: 1;
+			.sub {
+				line-height: 1.5;
+			}
+		}
+		@media (max-width: 413px) {
+			font-size: 9vw;
+		}
+		.sub {
+			letter-spacing: .034em;
+		}
+		small {
+			font-size: 0.5em;
+			vertical-align: super;
+			font-weight: inherit;
+		}
+	}
+}
+// /Hero
+// /Home
