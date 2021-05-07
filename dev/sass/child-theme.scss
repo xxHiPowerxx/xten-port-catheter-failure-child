@@ -63,6 +63,13 @@ a {
 		color: $secondary;
 	}
 }
+// WP Block Overrides
+.wp-block-separator {
+	background-color: $white;
+	margin-top: 6rem;
+	margin-bottom: 6rem;
+}
+// / WP Block Overrides
 // /Common
 
 // Header
@@ -110,9 +117,15 @@ div.header-wrapper {
 // Hero
 .xten-component-hero {
 	&#hero {
-		background-position-x: calc(50% - 82rem);
+		background-position-x: 100%;
 		@media (min-width: $vp_sm) {
-			background-position-x: calc(50% - 20rem);
+			background-position-x: 57.5%;
+		}
+		@media (min-width: $vp_m) {
+			background-position-x: 70%;
+		}
+		@media (min-width: $vp_xl) {
+			background-position-x: 100%;
 		}
 	}
 	.xten-content {
